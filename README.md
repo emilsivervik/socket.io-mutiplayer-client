@@ -3,6 +3,8 @@ This is a _BASIC_ sample of how a multiplayer (on the client-side) game could wo
 
 The reason I rewrote the code was because the code in his example was hard to understand (too messy) and I also wanted to clean it up using ES6 classes.
 
+You can find the server-side code [HERE](https://github.com/emilsivervik/socket.io-mutiplayer-server)
+
 # install 
 npm install
 
