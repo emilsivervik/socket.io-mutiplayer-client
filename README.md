@@ -17,44 +17,44 @@ I used nginx for this project and made it proxy all the requests to node.js
 
 The basic config that I used for nginx looks like this (root should be absolute dir of your dist folder)- 
 
-events {
-    worker_connections  1024;
-}
+        events {
+            worker_connections  1024;
+        }
 
-http {
-	expires off;
-    gzip  on;
-	include    mime.types;	
-	sendfile off;	
-	upstream socket_nodes {
-		ip_hash;
-		server 127.0.0.1:8080;
-	}
-    server {
-        listen       80;
-        server_name  localhost;
-        
-        location / {            
-            root ABSOLUTE/DIR/HERE/dist/;		
-            index  index.html index.htm;
-            add_header 'Cache-Control' 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0';
+        http {
             expires off;
-        }
-        
-        location /socket.io/ {
-            proxy_http_version 1.1;
-            proxy_set_header Upgrade $http_upgrade;
-            proxy_set_header Connection "upgrade";
-            proxy_redirect off;
+            gzip  on;
+            include    mime.types;	
+            sendfile off;	
+            upstream socket_nodes {
+                ip_hash;
+                server 127.0.0.1:8080;
+            }
+            server {
+                listen       80;
+                server_name  localhost;
+                
+                location / {            
+                    root ABSOLUTE/DIR/HERE/dist/;		
+                    index  index.html index.htm;
+                    add_header 'Cache-Control' 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0';
+                    expires off;
+                }
+                
+                location /socket.io/ {
+                    proxy_http_version 1.1;
+                    proxy_set_header Upgrade $http_upgrade;
+                    proxy_set_header Connection "upgrade";
+                    proxy_redirect off;
 
-            proxy_buffers 8 32k;
-            proxy_buffer_size 64k;
+                    proxy_buffers 8 32k;
+                    proxy_buffer_size 64k;
 
-            proxy_set_header X-Real-IP $remote_addr;
-            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_set_header Host $http_host;
-            proxy_set_header X-NginX-Proxy true;
-            proxy_pass http://socket_nodes;
+                    proxy_set_header X-Real-IP $remote_addr;
+                    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                    proxy_set_header Host $http_host;
+                    proxy_set_header X-NginX-Proxy true;
+                    proxy_pass http://socket_nodes;
+                }
+            }
         }
-    }
-}
