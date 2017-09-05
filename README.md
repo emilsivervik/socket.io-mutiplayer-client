@@ -6,13 +6,13 @@ The reason I rewrote the code was because the code in his example was hard to un
 You can find the server-side code [HERE](https://github.com/emilsivervik/socket.io-mutiplayer-server)
 
 ## install 
-npm install
+        npm install
 
 ## build 
-npm run build
+        npm run build
 
 ## webpack with live reload
-npm run start
+        npm run start
 
 ## serving static files
 I used nginx for this project and made it proxy all the requests to node.js
