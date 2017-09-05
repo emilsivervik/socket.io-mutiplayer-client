@@ -9,10 +9,10 @@ npm install
 # build 
 npm run build
 
-#Webpack with live reload
+# Webpack with live reload
 npm run start
 
-#Serving static files
+# Serving static files
 I used nginx for this project and made it proxy all the requests to node.js
 
 The basic config that I used for nginx looks like this (root should be absolute dir of your dist folder)- 
