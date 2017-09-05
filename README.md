@@ -5,16 +5,16 @@ The reason I rewrote the code was because the code in his example was hard to un
 
 You can find the server-side code [HERE](https://github.com/emilsivervik/socket.io-mutiplayer-server)
 
-# install 
+## install 
 npm install
 
-# build 
+## build 
 npm run build
 
-# Webpack with live reload
+## webpack with live reload
 npm run start
 
-# Serving static files
+## serving static files
 I used nginx for this project and made it proxy all the requests to node.js
 
 The basic config that I used for nginx looks like this (root should be absolute dir of your dist folder)- 
